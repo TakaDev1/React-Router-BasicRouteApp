@@ -1,32 +1,110 @@
-# React + TypeScript + Vite
+# React Router Basic Routing App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React Routerを使用して、URLによって表示するコンポーネントを切り替える基本的なルーティングを実装する練習アプリです。
 
-Currently, two official plugins are available:
+## 概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+`BrowserRouter`、`Routes`、`Route`を使用して、以下のURLに対応するページを作成します。
 
-## React Compiler
+| URL      | 表示コンポーネント |
+| -------- | --------- |
+| `/`      | `Home`    |
+| `/about` | `About`   |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 学習内容
 
-## Expanding the Oxlint configuration
+* `BrowserRouter`の使い方
+* `Routes`の使い方
+* `Route`の使い方
+* URLとコンポーネントの対応付け
+* React Routerによる基本的なルーティング
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 使用技術
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+* React
+* TypeScript
+* React Router
+* Vite
+
+## ディレクトリ構成
+
+```text
+src/
+├── pages/
+│   ├── Home.tsx
+│   └── About.tsx
+├── App.tsx
+└── main.tsx
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## ルーティング
+
+### `/`
+
+`Home`コンポーネントを表示します。
+
+```tsx
+<Route path="/" element={<Home />} />
+```
+
+### `/about`
+
+`About`コンポーネントを表示します。
+
+```tsx
+<Route path="/about" element={<About />} />
+```
+
+## App.tsx
+
+```tsx
+import { BrowserRouter, Route, Routes } from "react-router";
+import Home from "./pages/Home";
+import About from "./pages/About";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+```
+
+## 実行
+
+```bash
+npm install
+npm run dev
+```
+
+ブラウザで以下にアクセスします。
+
+```text
+http://localhost:5173/
+```
+
+```text
+http://localhost:5173/about
+```
+
+## 課題のポイント
+
+React Routerでは、`Route`の`path`によってURLと表示するコンポーネントを対応させます。
+
+```text
+URL
+ ↓
+Routes
+ ↓
+Route
+ ↓
+対応するコンポーネント
+```
+
+この課題では、React Routerの基本となる「URLに応じてページを切り替える」という仕組みを理解することを目的とします。
