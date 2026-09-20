@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 function App() {
   return (
     <>
-      <div>
+      <div className="min-h-screen bg-gray-800 flex flex-col justify-center">
         <BrowserRouter>
           <h1>React-Router-BasicRouteApp</h1>
           <Routes>
